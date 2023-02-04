@@ -2,10 +2,9 @@
 require('colors')
 require('dotenv').config()
 
-const { createOutput, writeFile } = require('./services/file')
+const { createOutput, writeSvgAndPng } = require('./services/file')
 const { parseTable } = require('./services/puppeteer')
 const { drawBarGraph } = require('./services/graph')
-const { checkDate } = require('./utils/datetime')
 
 // Entry
 const main = () =>
@@ -25,10 +24,10 @@ const main = () =>
       const parsedData = await parseTable(url, className)
 
       // Plot graph
-      const graphData = await drawBarGraph(parsedData)
+      const svgBuffer = drawBarGraph(parsedData)
 
       // Write file
-      writeFile(graphData)
+      writeSvgAndPng(svgBuffer)
 
       // Done process
       res()

@@ -1,6 +1,7 @@
 // Imports
 const fs = require('fs')
 const path = require('path')
+const sharp = require('sharp')
 require('colors')
 
 const outputDir = path.join(__dirname, '../../output')
@@ -14,14 +15,21 @@ const createOutput = () => {
   }
 }
 
-const writeFile = (buffer, fileName) => {
+const writeSvgAndPng = (svgBuffer) => {
   try {
     console.warn('Writting output file...'.bgYellow + '\n')
-    fs.writeFileSync(`${outputDir}/${fileName}`, buffer)
+    fs.writeFileSync(`${outputDir}/output.svg`, svgBuffer)
+    // Convert the SVG into a PNG.
+    sharp(`${outputDir}/output.svg`)
+      .png()
+      .toFile(`${outputDir}/output.png`)
+      .catch((err) => {
+        console.log(err)
+      })
   } catch (error) {
     throw new Error(error)
   }
 }
 
 // Exports
-module.exports = { createOutput, writeFile }
+module.exports = { createOutput, writeSvgAndPng }
