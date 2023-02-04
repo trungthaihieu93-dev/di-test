@@ -1,4 +1,5 @@
 'use strict'
+// Imports
 require('colors')
 
 const parseTable = (url) => {

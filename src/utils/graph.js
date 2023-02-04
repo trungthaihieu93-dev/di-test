@@ -1,4 +1,5 @@
 'use strict'
+// Imports
 const {} = require('nodeplotlib')
 
 const drawBarGraph = (data) => {
