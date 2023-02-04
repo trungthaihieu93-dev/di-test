@@ -3,13 +3,13 @@ require('colors')
 require('dotenv').config()
 
 const { createOutput, writeFile } = require('./services/file')
-const { parseTable } = require('./services/pupeteer')
+const { parseTable } = require('./services/puppeteer')
 const { drawBarGraph } = require('./services/graph')
 const { checkDate } = require('./utils/datetime')
 
 // Entry
 const main = () =>
-  new Promise((res, rej) => {
+  new Promise(async (res, rej) => {
     // Get and check URL
     const url = process.env.URL
     if (!url || !url.includes('wikipedia')) {
@@ -21,13 +21,14 @@ const main = () =>
       createOutput()
 
       // Parse web url for metrics
-      parseTable()
+      const className = process.env.CLASS_NAME
+      const parsedData = await parseTable(url, className)
 
       // Plot graph
-      drawBarGraph()
+      const graphData = await drawBarGraph(parsedData)
 
       // Write file
-      writeFile()
+      writeFile(graphData)
 
       // Done process
       res()
@@ -39,11 +40,16 @@ const main = () =>
 // Execute
 main()
   .then(
-    (_) => console.log('Done process! Please check output folder.\n'.bgGreen),
-    // ** End Process **
+    (_) => {
+      console.log('Done process! Please check output folder'.bgGreen)
+      console.log('\n')
+    },
+    // ** Success **
   )
   .catch((err) => {
     console.error('Error while processing!'.bgRed)
-    console.error(`Error: ${err}`)
+    console.error(err)
+    process.exit(1)
     // ** Throw Error **
   })
+  .finally((_) => process.exit(0)) // ** End Process **

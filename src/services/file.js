@@ -14,11 +14,12 @@ const createOutput = () => {
   }
 }
 
-const writeFile = (buffer) => {
+const writeFile = (buffer, fileName) => {
   try {
-    fs.writeFileSync(`${outputDir}/data.png`, buffer)
+    console.warn('Writting output file...'.bgYellow + '\n')
+    fs.writeFileSync(`${outputDir}/${fileName}`, buffer)
   } catch (error) {
-    console.error(error)
+    throw new Error(error)
   }
 }
 
