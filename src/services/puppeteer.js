@@ -35,7 +35,7 @@ const parseTable = async (url) => {
       const tds = Array.from(document.querySelectorAll(dataQuery))
 
       return {
-        data: tds.map((th) => th.innerText),
+        data: tds.map((td) => td.innerText),
         colCount,
       }
     })
@@ -87,4 +87,4 @@ const parseTable = async (url) => {
   }
 }
 
-module.exports = { parseTable }
+module.exports = {getPage, parseTable }

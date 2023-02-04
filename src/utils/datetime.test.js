@@ -1,4 +1,5 @@
 const assert = require('assert')
+const sinon = require('sinon')
 
 const { checkDate, parseDate } = require('./datetime')
 
@@ -23,7 +24,7 @@ describe('Test Datetime Utils', function () {
     it('should return right date', function () {
       const testDate = '09 Mar 1993'
       const result = parseDate(testDate, 'DD/MM/YYYY')
-      
+
       assert.equal(result, '09/03/1993')
     })
   })
