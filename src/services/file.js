@@ -10,6 +10,8 @@ const outputDir = path.join(__dirname, '../../output')
 const createOutput = () => {
   try {
     fs.mkdirSync(outputDir)
+
+    console.warn('Created output folder!'.bgGreen + '\n')
   } catch (error) {
     console.warn('Output folder found!'.bgGreen + '\n')
   }

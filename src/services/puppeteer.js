@@ -12,6 +12,8 @@ const getPage = async (url) => {
 
   const page = await browser.newPage()
 
+  console.warn(`Going to this website ${url}...`.bgYellow + '\n')
+
   await page.goto(url)
 
   return page
@@ -20,9 +22,12 @@ const getPage = async (url) => {
 // Parse Table
 const parseTable = async (url) => {
   try {
-    console.warn('Parsing table...'.bgYellow + '\n')
+    // Get Page
     const page = await getPage(url)
 
+    console.warn('Evaluating...'.bgYellow + '\n')
+
+    // Evaluating Data
     const rawData = await page.evaluate(() => {
       // TODO: puppeteer cannot get env var
       const className = 'wikitable'
@@ -42,6 +47,8 @@ const parseTable = async (url) => {
 
     const { data, colCount } = rawData
 
+    // Parsing data
+    console.warn('Parsing table...'.bgYellow + '\n')
     const parsedData = data.reduce((data, nextItem, index) => {
       // New item
       let tempData = data
@@ -87,4 +94,4 @@ const parseTable = async (url) => {
   }
 }
 
-module.exports = {getPage, parseTable }
+module.exports = { getPage, parseTable }
