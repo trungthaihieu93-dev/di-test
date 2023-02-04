@@ -2,9 +2,10 @@
 require('colors')
 require('dotenv').config()
 
-const { createOutput, writeFile } = require('./utils/file')
-const { parseTable } = require('./utils/pupeteer')
-const { drawBarGraph } = require('./utils/graph')
+const { createOutput, writeFile } = require('./services/file')
+const { parseTable } = require('./services/pupeteer')
+const { drawBarGraph } = require('./services/graph')
+const { checkDate } = require('./utils/datetime')
 
 // Entry
 const main = () =>

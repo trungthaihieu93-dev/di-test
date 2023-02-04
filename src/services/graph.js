@@ -1,6 +1,7 @@
 'use strict'
 // Imports
 const {} = require('nodeplotlib')
+const { checkDate, parseDate } = require('../utils/datetime')
 
 const drawBarGraph = (data) => {
   try {
