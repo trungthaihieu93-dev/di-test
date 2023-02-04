@@ -41,6 +41,10 @@ _Unit Testing_:[Mocha](https://mochajs.org/)/[Sinon](https://sinonjs.org/)
 
 _Miscellaneous_: [Lodash](https://lodash.com/)/[dotenv](https://www.npmjs.com/package/dotenv)/[colors](https://www.npmjs.com/package/colors)
 
+**Notice**
+
+Because of the peculiarity of every website structure, it's hard to have a common standard for parsing. So please
+notice that the current logic is only suitable for the given URL, which is placed at [CHALLENGE](CHALLENGE.md)
 
 ## Running Instruction
 
