@@ -1,0 +1,30 @@
+{
+  "name": "di-software-engineer-challenge",
+  "version": "1.0.0",
+  "description": "Thank you for taking the time to complete this challenge. It helps us understand your experience and the way you approach and solve problems.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungthaihieu93-dev/di-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trungthaihieu93-dev/di-test/issues"
+  },
+  "homepage": "https://github.com/trungthaihieu93-dev/di-test#readme",
+  "dependencies": {
+    "mocha": "^10.2.0",
+    "moment": "^2.29.4",
+    "nodeplotlib": "^1.1.2",
+    "pupeteer": "^0.0.1",
+    "sinon": "^15.0.1"
+  }
+}
