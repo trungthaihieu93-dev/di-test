@@ -1,19 +1,41 @@
-const { createOutput } = require('./utils/file')
+require('colors')
+require('dotenv').config()
 
-const main = async () => {
-  try {
-    // Create output folder
-    createOutput()
+const { createOutput, writeFile } = require('./utils/file')
+const { parseTable } = require('./utils/pupeteer')
+const { drawBarGraph } = require('./utils/graph')
 
-    // Parse web url for metrics
+const main = () =>
+  new Promise((res, rej) => {
+    const url = process.env.URL
+    if (!url || !url.includes('wikipedia')) {
+      rej('URL not provided or invalid! Please check .env file\n')
+      return
+    }
+    try {
+      // Create output folder
+      createOutput()
 
-    // Plot graph
+      // Parse web url for metrics
+      parseTable()
 
-    // Write file
-    
-  } catch (error) {
-    console.error(error)
-  }
-}
+      // Plot graph
+      drawBarGraph()
+
+      // Write file
+      writeFile()
+
+      res()
+    } catch (error) {
+      rej(error)
+    }
+  })
 
 main()
+  .then((_) =>
+    console.log('Done process! Please check output folder.\n'.bgGreen),
+  )
+  .catch((err) => {
+    console.error('Error while processing!'.bgRed)
+    console.error(`Error: ${err}`)
+  })

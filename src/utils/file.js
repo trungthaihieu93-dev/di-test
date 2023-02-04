@@ -9,7 +9,7 @@ const createOutput = () => {
   try {
     fs.mkdirSync(outputDir)
   } catch (error) {
-    console.warn('Output folder found!'.bgGreen)
+    console.warn('Output folder found!'.bgGreen + '\n')
   }
 }
 
